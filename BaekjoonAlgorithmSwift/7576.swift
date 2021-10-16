@@ -1,8 +1,8 @@
 //
-//  7576.swift
-//  BaekjoonAlgorithmSwift
+//  main.swift
+//  PracticeAlgorithm
 //
-//  Created by 박근보 on 2021/10/15.
+//  Created by 박근보 on 2021/10/13.
 //
 
 import Foundation
@@ -13,6 +13,7 @@ import Foundation
 let mn = readLine()!.split(separator: " ").map{Int(String($0))!}
 let m = mn[0]
 let n = mn[1]
+
 
 //방향 상수. 좌측 인덱스부터 순서대로 상, 하, 좌, 우 이다.
 let dx = [0, 0, -1, 1]
@@ -31,6 +32,8 @@ var queue = [(Int, Int)]()
 for i in 0..<n {
     field[i] = readLine()!.split(separator: " ").map{Int(String($0))!}
 }
+// 0 0 0.
+
 
 //최초 토마토의 위치를 찾아서 큐에 등록
 for i in 0..<n {
@@ -55,11 +58,9 @@ while queue.count > index {
                 
         if nx >= 0 && nx < n && ny >= 0 && ny < m && field[nx][ny] == 0 {
             
-            // 시간 누적 처리 후 새로운 값을 큐에 넣어준다. 즉 field의 인덱스들이 퍼져나가는 느낌 가령 예를들어 0 0 0                                 5 4 3
-                field[nx][ny] = field[cur.0][cur.1] + 1                               // 0 0 0 이렇게 있다면 다 익고 나면 field가 ->  4 3 2  이렇게 됨.
-        //      print("nx: \(nx)")                                                    // 0 0 1                                 3 2 1
-        //      print("ny: \(ny)")
-        //      print(field[nx][ny])
+            // 시간 누적 처리 후 새로운 값을 큐에 넣어준다. 즉 field의 인덱스들이 퍼져나가는 느낌 가령 예를들어 0 0 3                                 5 4 3
+                field[nx][ny] = field[cur.0][cur.1] + 1                               // 0 3 2 이렇게 있다면 다 익고 나면 field가 ->  4 3 2  이렇게 됨.
+                                                                                      // 3 2 1                                 3 2 1
                 queue.append((nx, ny))
             
         }
